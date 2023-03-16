@@ -30,6 +30,23 @@ class List {
     }
 
     /**
+     * Определяет количество узлов в списке
+     * @returns количество узлов
+     */
+    length() {
+        if (this.head == null) {
+            return 0;
+        }
+        let count = 0;
+        let node = this.head;
+        while (node != null) {
+            count++;
+            node = node.next;
+        }
+        return count;
+    }
+
+    /**
      * Вставка узла в конец списка
      * @param {*} value значение узла, по которому строится узел
      * @returns экземпляр класса (сам объект)
@@ -128,6 +145,7 @@ class List {
 let list = new List();
 list.add("qwerty").add(false).add(12345).add("AAAA").add("234erfd3").add(12345);
 list.change(12345, 909);
+console.log("Длина списка:" + list.length());
 list.find("AAAA").printNode();
 list.delete("AAAA").delete("909").delete("qwerty");
 
