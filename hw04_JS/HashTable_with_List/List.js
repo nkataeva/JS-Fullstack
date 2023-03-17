@@ -9,12 +9,12 @@ class Node {
     }
 
     printNode() {
-        console.log(this.login + ": " + this.passwd);
+        console.log(this.login + ": " + this.passwd + ", ");
     }
 }
 
 /**
- * Односвязный список
+ * Односвязный список, хранящий уникальные логины и хешированные пароли
  */
 export class List {
     constructor() {
@@ -59,13 +59,13 @@ export class List {
             this.tail = this.head;
             return this;
         } else {
-            if (this.find(newNode) != null) {
-                throw "Такой логин уже существует";
+            if (this.find(newNode.login)?.login && this.find(newNode.login).login == login) {
+                throw new Error("Такой логин уже существует!");
             } else {
                 // присваиваем следующему элементу конца новый элемент  
                 this.tail.next = newNode; 
                 // переопределяем конец на новый элемент
-                this.tail = newNode; 
+                this.tail = newNode;
                 return this;
             }
         }
@@ -74,7 +74,7 @@ export class List {
     /**
      * Функция поиска элемента по заданному значению
      * @param {*} login заданное значение
-     * @returns первый встретившийся в списке элемент с заданным значением 
+     * @returns элемент с переданным логином 
      */
     find(login) {
         if (this.head == null) {
@@ -111,8 +111,8 @@ export class List {
     }
 
     /**
-     * Удаление всех элементов в списке по заданному значению
-     * @param {*} login значение, по которому будут удалены узлы
+     * Удаление элемента в списке по заданному значению
+     * @param {*} login значение, по которому будет удален узел
      * @returns экземпляр класса (сам объект)
      */
     delete(login) {
@@ -124,6 +124,7 @@ export class List {
         if (this.head.login == login) {
             deletedNode = this.head;
             this.head = this.head.next;
+            
         }
         // удаляем элементы по значению в списке
         let currentNode = this.head;
