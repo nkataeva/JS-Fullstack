@@ -1,21 +1,22 @@
 /**
- * Узел списка
+ * Узел списка смежностей графа
  */
  class Node {
-    constructor(value) {
-        this.value = value;
+    constructor(vertex, weight) {
+        this.vertex = vertex;
+        this.weight = weight;
         this.next = null;
     }
 
     printNode() {
-        console.log(this.value);
+        console.log(this.vertex + ", " + this.weight);
     }
 }
 
 /**
- * Односвязный список
+ * Односвязный список смежностей графа
  */
-class List {
+export class List {
     constructor() {
         this.head = null;
         this.tail = null;
@@ -48,11 +49,11 @@ class List {
 
     /**
      * Вставка узла в конец списка
-     * @param {*} value значение узла, по которому строится узел
+     * @param {*} vertex значение узла, по которому строится узел
      * @returns экземпляр класса (сам объект)
      */
-    add(value) {
-        const newNode = new Node(value);
+    add(vertex, weight) {
+        const newNode = new Node(vertex, weight);
         if (!this.head || !this.tail) {
             this.head = newNode;
             this.tail = newNode;
@@ -68,16 +69,16 @@ class List {
 
     /**
      * Функция поиска элемента по заданному значению
-     * @param {*} value заданное значение
+     * @param {*} vertex заданное значение
      * @returns первый встретившийся в списке элемент с заданным значением 
      */
-    find(value) {
+    find(vertex) {
         if (this.head == null) {
             return null;
         }
         let node = this.head;
         while(node != null) {
-            if (node.value === value) {
+            if (node.vertex === vertex) {
                 return node;
             }
             node = node.next;
@@ -87,18 +88,18 @@ class List {
 
     /**
      * Изменяет все элементы в списке по заданному значению, возвращает null
-     * @param {*} value значение, которое будет заменено
+     * @param {*} vertex значение, которое будет заменено
      * @param {*} newValue новое значение узла
      * @returns экземпляр класса (сам объект)
      */
-    change(value, newValue) {
+    change(vertex, newValue) {
         if (this.head == null) {
             return null;
         }
         let node = this.head;
         while(node != null) {
-            if (node.value === value) {
-                node.value = newValue;
+            if (node.vertex === vertex) {
+                node.weight = newValue;
             }
             node = node.next;
         }
@@ -107,16 +108,16 @@ class List {
 
     /**
      * Удаление всех элементов в списке по заданному значению
-     * @param {*} value значение, по которому будут удалены узлы
+     * @param {*} vertex значение, по которому будут удалены узлы
      * @returns экземпляр класса (сам объект)
      */
-    delete(value) {
+    delete(vertex) {
         if (this.head == null) {
             return null;
         }
         let deletedNode = null;
         // удаление начального узла
-        if (this.head.value == value) {
+        if (this.head.vertex == vertex) {
             deletedNode = this.head;
             this.head = this.head.next;
         }
@@ -124,7 +125,7 @@ class List {
         let currentNode = this.head;
         if (currentNode != null) {
             while (currentNode.next != null) {
-                if (currentNode.next.value == value) {
+                if (currentNode.next.vertex == vertex) {
                     deletedNode = currentNode.next;
                     currentNode.next = currentNode.next.next;
                 } else {
@@ -133,21 +134,10 @@ class List {
             }
         }
         // удаляем конец списка
-        if (this.tail.value == value) {
+        if (this.tail.vertex == vertex) {
             this.tail = currentNode;
         }
         return this;
     }
     
 }
-
-// "тесты"
-let list = new List();
-list.add("qwerty").add(false).add(12345).add("AAAA").add("234erfd3").add(12345);
-list.change(12345, 909);
-console.log("Длина списка:" + list.length());
-list.find("AAAA").printNode();
-list.delete("AAAA").delete("909").delete("qwerty");
-
-console.log("Оставшийся список:")
-list.printList();
