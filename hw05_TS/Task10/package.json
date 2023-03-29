@@ -1,0 +1,19 @@
+{
+  "name": "task10",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "Main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node Dist/Main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/prompt-sync": "^4.2.0"
+  }
+}
