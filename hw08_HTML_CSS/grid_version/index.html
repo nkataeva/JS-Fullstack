@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 100px 1fr;
+            grid-template-areas:
+                "header header"
+                "sidebar content";
+            min-height: 100vh;
+        }
+
+        .header {
+            grid-area: header;
+            background-color: #333;
+            color: #fff;
+            padding: 0;
+            position: fixed;
+            width: 100%;
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+            background-color: #f2f2f2;
+            padding: 20px;
+            position: fixed;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            top: 100px;
+            width: 200px;
+        }
+
+        .content {
+            grid-area: content;
+            padding: 20px;
+            margin-left: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-rows: 100px auto;
+                grid-template-areas:
+                    "header"
+                    "content";
+            }
+
+            .sidebar {
+                position: static;
+                height: auto;
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Заголовок</h1>
+        </div>
+        <div class="sidebar">
+            <h2>Боковое меню</h2>
+            <ul>
+                <li>Пункт 1</li>
+                <li>Пункт 2</li>
+                <li>Пункт 3</li>
+            </ul>
+        </div>
+        <div class="content">
+            <h2>Содержимое</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla efficitur ligula vel arcu tristique, a mattis orci sollicitudin. Suspendisse scelerisque ultricies felis in rutrum. Sed pretium felis eu ex efficitur dignissim. Sed suscipit tincidunt elit ac dignissim. Nulla eget pharetra urna. In ac tellus at odio iaculis tristique id eget arcu. Etiam pulvinar luctus tellus at posuere. Donec accumsan, nisi at fringilla vestibulum, ex risus pharetra lacus, in iaculis lectus mi at lectus. Curabitur efficitur purus at est pellentesque, et posuere nisi faucibus. Duis non orci varius, finibus risus sit amet, mattis nunc.</p>
+        </div>
+    </div>
+</body>
+</html>
