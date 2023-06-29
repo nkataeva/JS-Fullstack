@@ -25,7 +25,6 @@ export async function handleRequest(req: IncomingMessage, res: ServerResponse) {
         if (url === '/contacts') {
             // получить все контакты
             responseBody = await getAllContacts();
-            console.log(JSON.stringify(responseBody));
         } else if (url?.startsWith('/contacts?id=')) {
             // получить контакт по id
             const id = parseInt(url.split('=')[1]);

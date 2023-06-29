@@ -11,8 +11,6 @@ export interface Contact {
 
 // Получить все контакты
 export async function getAllContacts(): Promise<Contact[]> {
-    console.log('lalala')
-    console.log(JSON.stringify(readFromFile()))
     return readFromFile();
 }
 
